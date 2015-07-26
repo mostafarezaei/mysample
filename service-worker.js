@@ -13,7 +13,6 @@ self.addEventListener('message', function(event) {
  require({
   'packages': [{
    'name': 'ydn',
-   'location': '/',
    'main': 'ydn'
   }]
  }, ['ydn'], function(ydn) {
