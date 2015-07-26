@@ -1,54 +1,64 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <script>
-      // Service workers require HTTPS (http://goo.gl/lq4gCo). If we're running on a real web server
-      // (as opposed to localhost on a custom port, which is whitelisted), then change the protocol to HTTPS.
-      if ((!location.port || location.port == "80") && location.protocol != 'https:') {
-        location.protocol = 'https:';
-      }
-    </script>
 
-    <link rel="stylesheet" href="../../styles/main.css">
-  </head>
+<head>
+ <script>
+  // Service workers require HTTPS (http://goo.gl/lq4gCo). If we're running on a real web server
+  // (as opposed to localhost on a custom port, which is whitelisted), then change the protocol to HTTPS.
+  if ((!location.port || location.port == "80") && location.protocol != 'https:') {
+   location.protocol = 'https:';
+  }
+ </script>
 
-  <body>
+ <link rel="stylesheet" href="../../styles/main.css">
+</head>
 
-  <script>
-    function logState(state) {
-      var liElement = document.createElement('li');
-      liElement.textContent = state;
-      document.querySelector('#states').appendChild(liElement);
-    }
+<body>
 
-    function getAllRows(table) {
-     return navigator.serviceWorker.ready.then(function(reg) {
-      sendMessageToServiceWorker({command:'run', body:"this is a test"}).then(function(data) {
-       debugger;
-      });
-     });
-    }
+ <script>
+  function logState(state) {
+   var liElement = document.createElement('li');
+   liElement.textContent = state;
+   document.querySelector('#states').appendChild(liElement);
+  }
 
-    function sendMessageToServiceWorker(message) {
-     return new Promise(function(resolve, reject) {
-      var messageChannel = new MessageChannel();
-      messageChannel.port1.onmessage = function(event) {
-       if (event.data.error) {
-        reject(event.data.error);
-       } else {
-        resolve(event.data);
-       }
-      };
-      navigator.serviceWorker.controller.postMessage(message, [messageChannel.port2]);
-     });
-    }
+  function getAllRows(table) {
+   return navigator.serviceWorker.ready.then(function(reg) {
+    sendMessageToServiceWorker({
+     command: 'run',
+     body: "this is a test"
+    }).then(function(data) {
+     debugger;
+    });
+   });
+  }
 
-    if ('serviceWorker' in navigator) {
+  function sendMessageToServiceWorker(message) {
+   return new Promise(function(resolve, reject) {
+    var messageChannel = new MessageChannel();
+    messageChannel.port1.onmessage = function(event) {
+     if (event.data.error) {
+      reject(event.data.error);
+     } else {
+      resolve(event.data);
+     }
+    };
+    navigator.serviceWorker.controller.postMessage(message, [messageChannel.port2]);
+   });
+  }
+
+  if ('serviceWorker' in navigator) {
+   navigator.serviceWorker.register('service-worker.js', {
+    scope: './'
+   }).then(function(registration) {
+     debugger;
      getAllRows();
-    } else {
-      document.querySelector('#availability').textContent = 'are not';
     }
-  </script>
+   } else {
+    document.querySelector('#availability').textContent = 'are not';
+   }
+ </script>
 
-  </body>
+</body>
+
 </html>
