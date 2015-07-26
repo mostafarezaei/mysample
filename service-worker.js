@@ -10,7 +10,18 @@ self.addEventListener('activate', function(e) {
 
 self.addEventListener('message', function(event) {
  debugger;
- require(['ydn'], function(ydn) {
+ require({
+  'packages': [{
+   'name': 'ydn',
+   'location': 'path/to/ydn-db',
+   'main': 'ydn.db-iswu-core-e-qry-dev'
+  }]
+ }, ['ydn'], function(ydn) {
   debugger;
+  console.log(ydn.db.version);
+  var db = new ydn.db.Storage('db name');
  });
+ // require(['ydn'], function(ydn) {
+ //  debugger;
+ // });
 });
