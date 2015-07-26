@@ -11047,5 +11047,5 @@ lf.schema.DatabaseSchema.prototype.setPragma = function(pragma) {
 lf.schema.create = function(dbName, dbVersion) {
   return new lf.schema.Builder(dbName, dbVersion);
 };
-// goog.exportSymbol("lf.schema.create", lf.schema.create);
-// }.bind(window))()
+goog.exportSymbol("lf.schema.create", lf.schema.create);
+})()
