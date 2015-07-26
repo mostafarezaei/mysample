@@ -13,8 +13,8 @@ self.addEventListener('message', function(event) {
  require({
   'packages': [{
    'name': 'ydn',
-   'location': 'path/to/ydn-db',
-   'main': 'ydn.db-iswu-core-e-qry-dev'
+   'location': '/',
+   'main': 'ydn'
   }]
  }, ['ydn'], function(ydn) {
   debugger;
