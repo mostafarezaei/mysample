@@ -1,4 +1,4 @@
-importScripts('lovefield.min.js', 'require.js', 'require.config.js');
+importScripts('lovefield.js', 'require.js', 'require.config.js');
 
 self.addEventListener('install', function(e) {});
 
