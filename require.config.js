@@ -6,6 +6,6 @@ require.config({
  },
  paths: {
   db: 'lovefield.min',
-  ydn: 'ydn.js'
+  ydn: 'ydn'
  }
 });
