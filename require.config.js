@@ -1,5 +1,5 @@
 require.config({
  paths: {
-  db: 'lovefield.min.js'
+  db: 'lovefield.min'
  }
 });
