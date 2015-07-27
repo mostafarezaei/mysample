@@ -5,12 +5,12 @@ var lastNumber = null;
 
 onconnect = function(e) {
  debugger;
- require(['ydn'], function(ydn) {
-  debugger;
-  var port = e.ports[0];
-  port.onmessage = handleMessages(e, ydn);
-  port.start();
- });
+ // require(['ydn'], function(ydn) {
+ //  debugger;
+ //  var port = e.ports[0];
+ //  port.onmessage = handleMessages(e, ydn);
+ //  port.start();
+ // });
 }
 
 function handleMessages(event, ydn) {
