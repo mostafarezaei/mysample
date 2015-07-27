@@ -12,7 +12,7 @@ self.addEventListener('message', function(event) {
  debugger;
  require(['ydn'], function(ydn) {
   debugger;
-  console.log(ydn.db.version);
-  var db = new ydn.db.Storage('db name');
+  // console.log(ydn.db.version);
+  // var db = new ydn.db.Storage('db name');
  });
 });
