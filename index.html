@@ -20,22 +20,6 @@
    document.querySelector('#states').appendChild(liElement);
   }
 
-  function getAllRows(table) {
-   if (!!window.SharedWorker) {
-    var dbworker = new SharedWorker('shared-worker.js');
-
-    // send message
-    dbworker.port.postMessage([3, 5]);
-
-    // inform of received messages
-    dbworker.port.onmessage = function(e) {
-     debugger;
-     result1.textContent = e.data;
-     console.log('Message received from worker');
-    }
-   }
-  }
-
   function sendMessageToServiceWorker(message) {
    return new Promise(function(resolve, reject) {
     var messageChannel = new MessageChannel();
@@ -49,16 +33,19 @@
     navigator.serviceWorker.controller.postMessage(message, [messageChannel.port2]);
    });
   }
+  if (!!window.SharedWorker) {
+   var dbworker = new SharedWorker('shared-worker.js');
+   debugger;
+   
+   // send message
+   dbworker.port.postMessage([3, 5]);
 
-  if ('serviceWorker' in navigator) {
-   navigator.serviceWorker.register('service-worker.js', {
-    scope: './'
-   }).then(function(registration) {
+   // inform of received messages
+   dbworker.port.onmessage = function(e) {
     debugger;
-    getAllRows();
-   });
-  } else {
-   document.querySelector('#availability').textContent = 'are not';
+    result1.textContent = e.data;
+    console.log('Message received from worker');
+   }
   }
  </script>
 
