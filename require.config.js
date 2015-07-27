@@ -5,6 +5,7 @@ require.config({
   }
  },
  paths: {
-  ydn:'ydn.db-is-core-e-qry-dev'
+  ydn:'ydn.db-is-core-e-qry-dev',
+  pl: 'q.js'
  }
 });

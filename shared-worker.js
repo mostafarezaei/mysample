@@ -6,7 +6,7 @@ var lastNumber = null;
 onconnect = function(e) {
  debugger;
 
- require(['ydn'], function(ydn) {
+ require(['ydn', 'pl'], function(ydn, pl) {
   debugger;
   var port = e.ports[0];
   port.onmessage = handleMessages(e, ydn);
