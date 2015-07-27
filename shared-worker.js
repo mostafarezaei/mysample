@@ -4,7 +4,6 @@ debugger;
 var lastNumber = null;
 
 onconnect = function(e) {
- throw new exception("test");
  debugger;
 
  // require(['ydn'], function(ydn) {
