@@ -5,5 +5,6 @@ require.config({
   }
  },
  paths: {
+  ydn:'ydn'
  }
 });
