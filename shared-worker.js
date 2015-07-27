@@ -4,6 +4,7 @@ debugger;
 var lastNumber = null;
 
 onconnect = function(e) {
+ debugger;
  require(['ydn'], function(ydn) {
   debugger;
   var port = e.ports[0];
