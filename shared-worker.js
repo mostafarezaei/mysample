@@ -9,13 +9,14 @@ onconnect = function(e) {
 
  // require(['ydn'], function(ydn) {
  //  debugger;
- //  var port = e.ports[0];
- //  port.onmessage = handleMessages(e, ydn);
- //  port.start();
+ var port = e.ports[0];
+ port.onmessage = handleMessages(e, ydn);
+ port.start();
  // });
 }
 
 function handleMessages(event, ydn) {
+ debugger;
  //ws.ensureServerConnectivity();
  console.log('Handling message event:', event);
  switch (event.data.command) {

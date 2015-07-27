@@ -2,50 +2,22 @@
 <html lang="en">
 
 <head>
- <script>
-  // Service workers require HTTPS (http://goo.gl/lq4gCo). If we're running on a real web server
-  // (as opposed to localhost on a custom port, which is whitelisted), then change the protocol to HTTPS.
-  if ((!location.port || location.port == "80") && location.protocol != 'https:') {
-   location.protocol = 'https:';
-  }
- </script>
 </head>
 
 <body>
 
  <script>
-  function logState(state) {
-   var liElement = document.createElement('li');
-   liElement.textContent = state;
-   document.querySelector('#states').appendChild(liElement);
-  }
+  var dbworker = new SharedWorker('shared-worker.js');
+  debugger;
 
-  function sendMessageToServiceWorker(message) {
-   return new Promise(function(resolve, reject) {
-    var messageChannel = new MessageChannel();
-    messageChannel.port1.onmessage = function(event) {
-     if (event.data.error) {
-      reject(event.data.error);
-     } else {
-      resolve(event.data);
-     }
-    };
-    navigator.serviceWorker.controller.postMessage(message, [messageChannel.port2]);
-   });
-  }
-  if (!!window.SharedWorker) {
-   var dbworker = new SharedWorker('shared-worker.js');
+  // send message
+  dbworker.port.postMessage([3, 5]);
+
+  // inform of received messages
+  dbworker.port.onmessage = function(e) {
    debugger;
-   
-   // send message
-   dbworker.port.postMessage([3, 5]);
-
-   // inform of received messages
-   dbworker.port.onmessage = function(e) {
-    debugger;
-    result1.textContent = e.data;
-    console.log('Message received from worker');
-   }
+   result1.textContent = e.data;
+   console.log('Message received from worker');
   }
  </script>
 
