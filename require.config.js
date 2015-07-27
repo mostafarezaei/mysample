@@ -5,7 +5,5 @@ require.config({
   }
  },
  paths: {
-  db: 'lovefield.min',
-  ydn: 'ydn'
  }
 });
