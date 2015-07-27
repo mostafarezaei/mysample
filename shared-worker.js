@@ -1,5 +1,5 @@
 debugger;
-importScripts('require.js', 'require.config.js');
+importScripts('require.js');
 
 var lastNumber = null;
 
