@@ -15,7 +15,4 @@ self.addEventListener('message', function(event) {
   console.log(ydn.db.version);
   var db = new ydn.db.Storage('db name');
  });
- // require(['ydn'], function(ydn) {
- //  debugger;
- // });
 });
