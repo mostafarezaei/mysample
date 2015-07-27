@@ -21,14 +21,19 @@
   }
 
   function getAllRows(table) {
-   return navigator.serviceWorker.ready.then(function(reg) {
-    sendMessageToServiceWorker({
-     command: 'run',
-     body: "this is a test"
-    }).then(function(data) {
+   if (!!window.SharedWorker) {
+    var dbworker = new SharedWorker('shared-worker.js');
+
+    // send message
+    dbworker.port.postMessage([3, 5]);
+
+    // inform of received messages
+    dbworker.port.onmessage = function(e) {
      debugger;
-    });
-   });
+     result1.textContent = e.data;
+     console.log('Message received from worker');
+    }
+   }
   }
 
   function sendMessageToServiceWorker(message) {
@@ -49,12 +54,12 @@
    navigator.serviceWorker.register('service-worker.js', {
     scope: './'
    }).then(function(registration) {
-     debugger;
-     getAllRows();
-    });
-   } else {
-    document.querySelector('#availability').textContent = 'are not';
-   }
+    debugger;
+    getAllRows();
+   });
+  } else {
+   document.querySelector('#availability').textContent = 'are not';
+  }
  </script>
 
 </body>
