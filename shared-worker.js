@@ -1,12 +1,12 @@
 debugger;
-importScripts('require.js');
+importScripts('require.js', 'require.config.js');
 
 var lastNumber = null;
 
 onconnect = function(e) {
  debugger;
 
- require(['ydn', 'pl'], function(ydn, pl) {
+ require(['ydn', 'q'], function(ydn, q) {
   debugger;
   var port = e.ports[0];
   port.onmessage = handleMessages(e, ydn);
