@@ -1,4 +1,4 @@
-importScripts('require.js');
+importScripts('require.js', 'require.config.js');
 debugger;
 self.addEventListener('install', function(e) {
  debugger;
